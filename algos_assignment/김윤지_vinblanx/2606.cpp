@@ -6,10 +6,10 @@ vector<int> a[101];
 bool chk[101];
 int cnt = 0;
 
-void DFS(int x){
-    chk[x] = true;
-    for (int i = 0; i < a[x].size(); i++){
-        int y = a[x][i];
+void DFS(int c){
+    chk[c] = true;
+    for (int i = 0; i < a[c].size(); i++){
+        int y = a[c][i];
         if (!chk[y]){
             DFS(y);
             cnt++;
