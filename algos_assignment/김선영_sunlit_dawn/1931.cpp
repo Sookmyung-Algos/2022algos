@@ -26,7 +26,7 @@ int main(void)
 
     for (int i = 0; i < n; i++) 
     {
-	scanf("%d %d", &start, &end);
+	cin >> start >> end;
 	v.push_back(pair<int, int>(start, end));
     }
 
