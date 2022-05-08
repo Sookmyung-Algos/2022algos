@@ -6,6 +6,8 @@ using namespace std;
 char l[1000001];
 char num[4];
 
+int count(int a);
+
 int main()
 {
     int s, p; 
@@ -22,40 +24,31 @@ int main()
     int r = 0;
 
     for (int i = 0; i < p; i++)
-    {    if (l[i] == 'A')
-            num[0]++;
-        else if (l[i] == 'C')
-            num[1]++;
-        else if (l[i] == 'G')
-            num[2]++;
-        else if (l[i] == 'T')
-            num[3]++;
+    {    
+        num[count(i)]++;
         if (num[0] >= a && num[1] >= c && num[2] >= g && num[3] >= t)
           r++;
     }
-    for (int i = (p-1); i<s; i++)
+    for (int i = 0; i<(s - p +1);i++)
     {
-        if (l[i+1] == 'A')
-            num[0]++;
-        else if (l[i+1] == 'C')
-            num[1]++;
-        else if (l[i+1] == 'G')
-            num[2]++;
-        else if (l[i+1] == 'T')
-            num[3]++;
-      
-        if (l[i-1] == 'A')
-            num[0]--;
-        else if (l[i-1] == 'C')
-            num[1]--;
-        else if (l[i-1] == 'G')
-            num[2]--;
-        else if (l[i-1] == 'T')
-            num[3]--;
-
+        num[count(i)]--;
+        num[count(i+p-1)]++;
         if (num[0] >= a && num[1] >= c && num[2] >= g && num[3] >= t)
           r++;
     }
     
     cout << r;
+}
+
+int count(int a)
+{
+    if (l[a] == 'A')
+        return 0;
+    else if (l[a] == 'C')
+        return 1;
+    else if (l[a] == 'G')
+        return 2;
+    else if (l[a] == 'T')
+        return 3;
+      
 }
