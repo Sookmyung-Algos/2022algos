@@ -6,7 +6,7 @@ int l[11];
 
 int main()
 {
-    ios::sync_with_stdio(0); //시간초과방지
+    ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
     
