@@ -2,7 +2,7 @@
 #include <algorithm>
 using namespace std;
 
-int arr[1000001];
+int arr[1000001] = {};
 
 
 int main(){
@@ -17,17 +17,17 @@ int main(){
     for (int i = 0; i<n; i++){
         int x, g = 0;
         cin >> g >> x;
-        arr[x] = g;
+        arr[x-1] = g;
     }
     
     int maxg = 0;
-    for (int i = 0; i < 2*k + 1 ; i++){
+    for (int i = 0; i < 2*k ; i++){
         maxg += arr[i];
     }
     
     int temp = maxg;
-    for (int i = 2*k + 1; i < 1000001 ; i++){
-        temp = temp + arr[i] - arr[i - 2*k - 1];
+    for (int i = 2*k; i < 1000001 ; i++){
+        temp = temp + arr[i] - arr[i - 2*k];
         if (temp > maxg)
             maxg = temp;
     }
