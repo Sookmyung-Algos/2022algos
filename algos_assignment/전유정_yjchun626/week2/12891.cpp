@@ -1,4 +1,3 @@
-// 미완
 #include <iostream>
 #include <string>
 #include <algorithm>
