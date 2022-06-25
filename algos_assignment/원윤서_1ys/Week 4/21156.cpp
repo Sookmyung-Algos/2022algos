@@ -4,14 +4,14 @@
 
 using namespace std;
 
-void fasti(void) {
+void fast_io(void) {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 }
 
 int main() {
-    fasti();
+    fast_io();
     list<int> lis;
     std::list<int>::iterator it;
 
