@@ -1,37 +1,62 @@
-#include <iostream>
-#include <algorithm>
+#include <cstring>
 #include <vector>
-const int MAX = 100001;
+#include <iostream>
+
 using namespace std;
 
-bool visit[MAX];
-vector<vector <int>> node;
+struct Node
+{
+    int index;
+    int dist;
+};
 
-int getint(){
-    int a;
-    cin >> a;
-    return a;
+int v, maxDist, maxNode;
+bool visit[100001]; 
+vector<Node> graph[100001];
+
+void dfs(int node, int dist)
+{    
+    if (visit[node])
+        return;
+    if (maxDist < dist)
+    {
+        maxDist = dist;
+        maxNode = node;
+    }
+    visit[node] = true;
+    for (int i = 0; i < graph[node].size(); i++)
+    {
+        int nextIndex = graph[node][i].index;
+        int nextDist = graph[node][i].dist;
+        dfs(nextIndex, nextDist + dist);
+    }
 }
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
 
-int main(){
-    int v;
     cin >> v;
-    
-    for (int i = 0; i<v; i++){
-        int temp;
-        cin >> temp;
-        node.push_back(temp);
-
-        int b[2], j = 0;
-        while(int c = getint() != -1){
-            b[j] = c;
-            j++;
-            if (j == 2){
-                node[i].push_back(b[0]);
-                node[i][0].push_back(b[1]);
-                b[0] = 0, b[1] = 0;
-            }
-             
+    int fr, to, dist;
+    for (int i = 1; i < v + 1; i++)
+    {
+        cin >> fr;
+        while (true)
+        {
+            cin >> to;
+            if (to == -1)
+                break;
+            cin >> dist;
+            graph[fr].push_back({to, dist});
+            graph[to].push_back({fr, dist});
         }
     }
+
+    dfs(1, 0);
+    memset(visit, 0, sizeof(visit));
+    maxDist = 0;
+    dfs(maxNode, 0);
+
+    cout << maxDist << '\n';
 }
