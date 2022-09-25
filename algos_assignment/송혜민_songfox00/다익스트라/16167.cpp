@@ -31,16 +31,16 @@ void dijkstra(int start)
         {
             int cost = dist+graph[cur][i].first;
                     
-            if(cost==d[graph[cur][i].second]){
-                if(v[graph[cur][i].second]>v[cur]+1){
+            if(cost==d[graph[cur][i].second]){  // 비용이 같은 경우
+                if(v[graph[cur][i].second]>v[cur]+1){   //거점의 수 비교
                     v[graph[cur][i].second]=v[cur]+1;
                     pq.push({-cost,graph[cur][i].second});
                 }
             }
-            if(cost<d[graph[cur][i].second])
+            if(cost<d[graph[cur][i].second])    //비용이 적으면
             {
-                d[graph[cur][i].second]=cost;
-                v[graph[cur][i].second]=v[cur]+1;
+                d[graph[cur][i].second]=cost;   //비용 업데이트
+                v[graph[cur][i].second]=v[cur]+1;   //거점 업데이트
                 pq.push({-cost,graph[cur][i].second});
             }
         }
@@ -65,9 +65,9 @@ int main(void)
     dijkstra(1);
     
     if(d[n]==INF){
-        cout<<"It is not a great way.";
+        cout<<"It is not a great way."<<"\n";
     }
     else{
-        cout<<d[n]<<' '<<v[n];
+        cout<<d[n]<<' '<<v[n]<<"\n";
     }
 }
