@@ -12,8 +12,98 @@ int arr2[10001];        //결과
 int dp1[10001];         //두 동전 뺀 나머지 {...,2,2}
 int dp2[10001];         //{2,2,...}
 
-bool check1(void);      //앞에서부터 확인
-bool check2(void);      //뒤에서부터 확인
+bool check1(void){      // 앞에서부터 
+    
+    bool flag1=false;
+    bool flag2=false;
+    int p=0,q=0;
+    
+    while (1){
+        if (p==n)
+            break;
+        
+        if (arr2[p]==dp1[q]){
+            p++;
+            q++;
+            continue;
+        }
+        
+        if (arr2[p]!=dp1[q]){
+            if (!flag1){
+                if (arr2[p]==arr1[a]){
+                    p++;
+                    flag1=true;
+                    continue;
+                }
+                    
+                else{
+                    return false;
+                }
+            }
+            
+            else if (flag1 && !flag2){
+                if (arr2[p]==arr1[b]){
+                    p++;
+                    flag2=true;
+                    continue;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool check2(void){      // 뒤에서 확인
+    bool flag1=false;
+    bool flag2=false;
+    int p=n-1,q=n-1;
+    
+    while (1){
+        if (p==-1)
+            break;
+        
+        if (arr2[p]==dp2[q]){
+            p--;
+            q--;
+            continue;
+        }
+        
+        if (arr2[p]!=dp2[q]){
+            if (!flag2){
+                if (arr2[p]==arr1[b]){
+                    p--;
+                    flag2=true;
+                    continue;
+                }
+                
+                else{
+                    return false;
+                }
+            }
+            
+            else if (!flag1 && flag2){
+                if (arr2[p]==arr1[a]){
+                    p--;
+                    flag1=true;
+                    continue;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                return false;
+            }
+        }
+    }
+    return true;
+}
 
 int main(){
     cin.tie(0); cout.tie(0);
@@ -68,97 +158,4 @@ int main(){
     }
     else
         cout<<"NO";
-}
-
-bool check1(void){
-    
-    bool flag1=false;
-    bool flag2=false;
-    int p=0,q=0;
-    
-    while (1){
-        if (p==n)
-            break;
-        
-        if (arr2[p]==dp1[q]){
-            p++;
-            q++;
-            continue;
-        }
-        
-        if (arr2[p]!=dp1[q]){
-            if (!flag1){
-                if (arr2[p]==arr1[a]){
-                    p++;
-                    flag1=true;
-                    continue;
-                }
-                
-                else{
-                    return false;
-                }
-            }
-            
-            else if (flag1 && !flag2){
-                if (arr2[p]==arr1[b]){
-                    p++;
-                    flag2=true;
-                    continue;
-                }
-                else{
-                    return false;
-                }
-            }
-            else{
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-bool check2(void){
-    bool flag1=false;
-    bool flag2=false;
-    int p=n-1,q=n-1;
-    
-    while (1){
-        if (p==-1)
-            break;
-        
-        if (arr2[p]==dp2[q]){
-            p--;
-            q--;
-            continue;
-        }
-        
-        if (arr2[p]!=dp2[q]){
-            if (!flag2){
-                if (arr2[p]==arr1[b]){
-                    p--;
-                    flag2=true;
-                    continue;
-                }
-                
-                else{
-                    return false;
-                }
-            }
-            
-            else if (!flag1 && flag2){
-                if (arr2[p]==arr1[a]){
-                    p--;
-                    flag1=true;
-                    continue;
-                }
-                else{
-                    return false;
-                }
-            }
-            else{
-                return false;
-            }
-        }
-    }
-    return true;
 }
