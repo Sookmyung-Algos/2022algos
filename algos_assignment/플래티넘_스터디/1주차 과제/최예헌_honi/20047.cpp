@@ -12,7 +12,7 @@ int arr2[10001];        //결과
 int dp1[10001];         //두 동전 뺀 나머지 {...,2,2}
 int dp2[10001];         //{2,2,...}
 
-bool check1(void){      // 앞에서부터 
+bool check1(void){      // 앞에서부터 확인
     
     bool flag1=false;
     bool flag2=false;
@@ -59,7 +59,7 @@ bool check1(void){      // 앞에서부터
     return true;
 }
 
-bool check2(void){      // 뒤에서 확인
+bool check2(void){      // 뒤에서부터 확인
     bool flag1=false;
     bool flag2=false;
     int p=n-1,q=n-1;
