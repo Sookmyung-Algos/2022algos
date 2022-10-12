@@ -1,6 +1,6 @@
 //
 //  20171.cpp
-//  icpc_prac_22
+//  prac_22
 //
 //  Created by 최예헌 on 2022/10/10.
 //
