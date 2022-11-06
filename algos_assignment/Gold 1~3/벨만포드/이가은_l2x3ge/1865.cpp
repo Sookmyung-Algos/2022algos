@@ -23,7 +23,7 @@ bool Bellman_Ford(int n) {
 			}
 		}
 	}
-	//À½ÀÇ »çÀÌÅ¬ È®ÀÎ
+	//ìŒì˜ ì‚¬ì´í´ í™•ì¸
 	for (int j = 0; j < edge.size(); j++) {
 		int u = edge[j].second.first;
 		int v = edge[j].second.second;
