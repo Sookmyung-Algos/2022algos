@@ -46,10 +46,10 @@ void NetworkFlow(int start, int end) {
 				}
 			}
 		}
-		//Á¾°á
+		//ì¢…ê²°
 		if (visit[end] == -1) break;
 
-		//À¯·®±¸ÇÏ±â
+		//ìœ ëŸ‰êµ¬í•˜ê¸°
 		for (int i = end; i != start; i = visit[i]) {
 			f[visit[i]][i] += 1;
 			f[i][visit[i]] -= 1;
