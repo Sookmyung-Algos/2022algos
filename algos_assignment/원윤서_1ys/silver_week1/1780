@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int n, check;
+int arr[2188][2188];
+int answer[3];
+
+void paper(int x, int y, int size) {
+
+	check = arr[x][y];
+
+	for (int i = x; i < x + size; i++)
+		for (int j = y; j < y + size; j++) {
+			if (arr[i][j] != arr[x][y]) {
+				paper(x, y, size / 3);
+				paper(x + size * 1 / 3, y, size / 3);
+				paper(x + size * 2 / 3, y, size / 3);
+				paper(x, y + size * 1 / 3, size / 3);
+				paper(x + size * 1 / 3, y + size * 1 / 3, size / 3);
+				paper(x + size * 2 / 3, y + size * 1 / 3, size / 3);
+				paper(x, y + size * 2 / 3, size / 3);
+				paper(x + size * 1 / 3, y + size * 2 / 3, size / 3);
+				paper(x + size * 2 / 3, y + size * 2 / 3, size / 3);
+				return;
+			}
+		}
+
+	answer[arr[x][y] + 1]++;
+	return;
+}
+
+int main() {
+	cin >> n;
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			cin >> arr[i][j];
+		}
+	}
+
+	paper(0, 0, n);
+
+	for (int i = 0; i < 3; i++) {
+		cout << answer[i] << endl;
+	}
+}
