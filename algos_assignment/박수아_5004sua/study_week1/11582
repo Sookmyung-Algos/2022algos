@@ -1,0 +1,12 @@
+N = int(input())
+c = list(map(int, input().split()))
+k = int(input())
+ 
+index = N // k
+array = []
+ 
+for i in range(0,N,index):
+    array = c[i:i+index]
+    array.sort()
+    for j in array:
+        print(j, end=' ')
