@@ -1,0 +1,36 @@
+from sys import stdin
+input = stdin.readline
+
+def bf(start):
+    dist[start] = 0
+    for i in range(n):
+        for j in range(n):
+            for next, cost in edges[j]:
+                if dist[next] > dist[j] + cost:
+                    dist[next] = dist[j] + cost
+                    if i == n - 1:
+                        return True
+    return False
+
+TC = int(input())
+
+for i in range(TC):
+    n, m, w = map(int, input().split())
+    edges = [[] for _ in range(n+1)]
+    dist = [10001 for _ in range(n+1)]
+
+    for j in range(m):
+        s, e, t = map(int, input().split())
+        edges[s].append([e, t])
+        edges[e].append([s, t])
+
+    for k in range(w):
+        s, e, t = map(int, input().split())
+        edges[s].append([e, -t])
+
+    if not bf(1):
+        print("NO")
+    else:
+        print("YES")
+
+# 참고 출처: https://letalearns.tistory.com/78
