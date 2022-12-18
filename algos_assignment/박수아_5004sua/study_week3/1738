@@ -1,0 +1,35 @@
+import sys
+
+n, m = map(int, sys.stdin.readline().rstrip().split())
+edges = [[] for _ in range(n+1)]
+INF = sys.maxsize
+for _ in range(m):
+    u, v, w = map(int, sys.stdin.readline().rstrip().split())
+    edges[u].append([v, w])
+
+def Bellman_Ford(start):
+    distances = [-INF for _ in range(n+1)]
+    distances[start] = 0
+    path = [0 for _ in range(n+1)]
+
+    for i in range(n):
+        for cur_node in range(1, n+1):
+            for next_node, next_cost in edges[cur_node]:
+                if distances[cur_node] != -INF and distances[next_node] < next_cost + distances[cur_node]:
+                    distances[next_node] = next_cost + distances[cur_node]
+                    path[next_node] = cur_node
+                    if i == n - 1: distances[next_node] = INF
+    result = []
+    cur_node = n
+    if distances[n] == INF:
+        print(-1)
+        return
+    while cur_node != 1:
+        result.append(cur_node)
+        cur_node = path[cur_node]
+    result.append(cur_node)
+    result = result[::-1]
+    print(*result, sep=' ')
+    return
+
+Bellman_Ford(1)
