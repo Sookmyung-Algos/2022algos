@@ -1,0 +1,23 @@
+n = int(input())
+dist = [[1e9 for i in range(26)] for i in range(26)] # 총 26가지의 알파벳
+for i in range(n):
+    inList = input().split()
+    start = ord(inList[0]) - ord('a') # 숫자 형태로 변환
+    end = ord(inList[2]) - ord('a')
+    dist[start][end] = 1 # 1로 변경
+
+# 플로이드-와샬
+for k in range(26):
+    for i in range(26):
+        for j in range(26):
+            dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+
+m = int(input())
+for i in range(m):
+    inList = input().split()
+    start = ord(inList[0]) - ord('a')
+    end = ord(inList[2]) - ord('a')
+    if dist[start][end] < 1e9: # 갈 수 있는 거리라면
+        print('T')
+    else:
+        print('F')
